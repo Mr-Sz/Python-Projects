@@ -3,4 +3,4 @@
 
 Written by Sz, 
 
->> Made this as my 2nd milestone python-project for my understanding of classes/objects up untill now.
+>> Made this as my 2nd milestone python-project for my understanding of classes/objects.
