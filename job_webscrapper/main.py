@@ -1,19 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+from datetime import date
 
 def find_jobs():
-    # Fetch HTML content from website
+    # Fetch HTML content from website, Parse HTML conten
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
-
-    # Parse HTML content using BeautifulSoup library
     soup = BeautifulSoup(html_text, 'lxml')
 
     # Find all job listings on the page
     jobs = soup.find_all('li', class_ = 'clearfix job-bx wht-shd-bx')
 
-    # Loop through each job listing and print out details for jobs that were published "few" days ago
     for job in jobs: 
+        
         # Get the published date of the job listing
         published_date = job.find('span',class_ ='sim-posted').text.split('\n')[-2]
         
@@ -28,21 +27,23 @@ def find_jobs():
             
             # check is unfamiliar skill is not present
             if unfamiliar_skill not in skills: 
-            
-                print('')
-                print(f'Company Name: {company_name.strip()}')
-                print(f'Required Skills: {skills}')
-                print(f'more_info: {more_info}')
-                
+                with open(f'posts/jobs_{date.today()}.txt', 'a') as f:
+                    f.write(f'Company Name: {company_name.strip()}\n')
+                    f.write(f'Required Skills: {skills}\n')
+                    f.write(f'more_info: {more_info}\n')
+                    f.write('\n')
+    
+    print(f'\nfile saved: jobs_{date.today()}.txt')
+               
 
 print('Enter some Skill that you are not familiar with:')
 unfamiliar_skill = input('>').lower().replace(' ','')
-print(f'filtering out {unfamiliar_skill}...')
+print(f'\nfiltering out {unfamiliar_skill}...')
 
 if __name__=='__main__':
     while True:
         find_jobs()
         wait_time=10
-        print(f'waiting for {wait_time} mins...')
+        print(f'\nwaiting for {wait_time} mins... or press ctrl+c to terminate loop')
         time.sleep(wait_time*60)
 
