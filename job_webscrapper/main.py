@@ -3,7 +3,7 @@ import requests
 import time  
 from datetime import date  
 
-def find_jobs():
+def find_jobs(unfamiliar_skills):
     # Fetch HTML content from website, Parse HTML content
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
     soup = BeautifulSoup(html_text, 'lxml')
@@ -26,7 +26,7 @@ def find_jobs():
             
             # Check if unfamiliar skill is not present and the job details are not already in the file
             
-            if unfamiliar_skill not in skills:
+            if not any(skill in skills for skill in unfamiliar_skills):
                 with open(f'posts/jobs_{date.today()}.txt', 'a+') as f:
                     # Move the file pointer to the beginning of the file and read the entire content of the file
                     f.seek(0)  
@@ -44,18 +44,19 @@ def find_jobs():
     # Print a message indicating that the file has been saved
     print(f'\nFile saved: jobs_{date.today()}.txt')
 
- 
-# Ask the user to enter an unfamiliar skill
-print('Enter some skill that you are not familiar with:')
-unfamiliar_skill = input('>').lower().replace(' ','')
+
+# Ask the user to enter unfamiliar skills
+print('Enter some skills that you are not familiar with (separated by commas):')
+unfamiliar_skills = input('>').lower().replace(' ','').split(',')
 
 # Print a message indicating that the filtering is in progress
-print(f'\nFiltering out {unfamiliar_skill}...')
+print(f'\nFiltering out jobs that require {", ".join(unfamiliar_skills)}...')
 
 # Run the job search continuously
 if __name__=='__main__':
     while True:
-        find_jobs()
+        find_jobs(unfamiliar_skills)
         wait_time=10  # Set the wait time between job searches
         print(f'\nWaiting for {wait_time} mins... or press ctrl+c to terminate loop')
         time.sleep(wait_time*60)  # Wait for the specified time before running the job search again
+        
