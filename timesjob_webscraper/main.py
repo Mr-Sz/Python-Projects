@@ -28,9 +28,10 @@ def find_jobs(unfamiliar_skills):
             
             if not any(skill in skills for skill in unfamiliar_skills):
                 with open(f'posts/jobs_{date.today()}.txt', 'a+') as f:
-                    # Move the file pointer to the beginning of the file and read the entire content of the file
-                    f.seek(0)  
-                    data = f.read()  
+                    
+                    f.seek(0) # Move the file pointer to the beginning of the file and read the entire content of the file
+                    data = f.read()
+
                     # Check if job details are already in the file and skip writing to the file if the data already exists
                     if f'Company Name: {company_name.strip()}\nRequired Skills: {skills}\nmore_info: {more_info}\n' in data:
                         continue  # Skip writing to the file
