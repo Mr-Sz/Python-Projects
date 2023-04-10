@@ -25,6 +25,7 @@ def find_jobs():
             more_info = job.header.h2.a['href'] # I do this extract value of 'href' in 'a'tag
             
             # Check if unfamiliar skill is not present and the job details are not already in the file
+            
             if unfamiliar_skill not in skills:
                 with open(f'posts/jobs_{date.today()}.txt', 'a+') as f:
                     # Move the file pointer to the beginning of the file and read the entire content of the file
@@ -43,6 +44,7 @@ def find_jobs():
     # Print a message indicating that the file has been saved
     print(f'\nFile saved: jobs_{date.today()}.txt')
 
+ 
 # Ask the user to enter an unfamiliar skill
 print('Enter some skill that you are not familiar with:')
 unfamiliar_skill = input('>').lower().replace(' ','')

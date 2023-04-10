@@ -19,11 +19,3 @@ To use this script, simply run the `main.py` file:
 
 
 The script will output the company names and required skills for job listings that were published "few" days ago.
-
-## Contributing
-
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. contributions are welcome!
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
