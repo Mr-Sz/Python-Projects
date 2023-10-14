@@ -9,7 +9,7 @@ Currently, this repository contains **4** Python mini projects.
 - [Web Scrapers:](./webscrapers/): This directory contains my web scraping projects where I explore data on the web using Python.
 - [Antipode Locator:](./Antipode-Locator/): Discover the exact opposite location on Earth with this simple Python application.
 - [Tic Tac Toe Game:](./TicTacToe-Game/): Play the classic Tic Tac Toe game against a computer opponent implemented in Python.
-- [War Card Game:](./War-Card-Game/): Experience the excitement of the War card game in this Python implementation.
+- [War Card Game:](./War Card Game/): Experience the excitement of the War card game in this Python implementation.
 
 ## Getting Started
 
